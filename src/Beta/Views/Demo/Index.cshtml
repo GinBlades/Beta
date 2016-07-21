@@ -1,0 +1,11 @@
+﻿@using Beta.Models
+@model IEnumerable<Demo>
+@{
+    ViewData["Title"] = "Demos";
+}
+
+<ul>
+    @foreach (var item in Model) {
+        <li>@item.Name</li>
+    }
+</ul>
