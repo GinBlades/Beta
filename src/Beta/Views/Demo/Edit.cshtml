@@ -1,23 +1,23 @@
 ﻿@model Beta.Models.Demo
 
 @{
-    ViewData["Title"] = "Create Demo";
+    ViewData["Title"] = "Edit Demo";
 }
 
-<form asp-action="Create">
+<form asp-action="Edit">
     <fieldset>
-        <legend>Create Demo</legend>
+        <legend>Edit Demo</legend>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        
+
         <label asp-for="Active"><input asp-for="Active" /></label>
         <label asp-for="Email"></label>
         <input asp-for="Email" />
         <span asp-validation-for="Email" />
         <label asp-for="Name"></label>
         <input asp-for="Name" />
-        <span asp-validation-for="Name"/>
+        <span asp-validation-for="Name" />
         <label asp-for="Price"></label>
-        <input asp-for="Price"/>
+        <input asp-for="Price" />
         <span asp-validation-for="Price" />
         <label asp-for="PublishAt"></label>
         <input asp-for="PublishAt" />

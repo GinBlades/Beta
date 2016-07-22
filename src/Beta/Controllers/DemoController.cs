@@ -22,7 +22,7 @@ namespace Beta.Controllers
             return View(await _service.GetDemosAsync());
         }
 
-        public async Task<IActionResult> Details(int? id = 0) {
+        public async Task<IActionResult> Details(int? id) {
             if (id == null) {
                 return BadRequest();
             }
@@ -39,13 +39,57 @@ namespace Beta.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([Bind("Id", "Name", "Email")]Demo demo) {
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind("Active,Email,Name,Price,PublishAt")]Demo demo) {
             if (ModelState.IsValid) {
                 await _service.AddDemoAsync(demo);
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = demo.Id });
+            }
+            return View(demo);
+        }
+
+        public async Task<IActionResult> Edit(int? id) {
+            if (id == null) {
+                return BadRequest();
             }
 
-            return View();
+            Demo demo = await _service.GetDemoByIdAsync(id.Value);
+            if (demo == null) {
+                return NotFound();
+            }
+
+            return View(demo);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int? id, [Bind("Active,Email,Name,Price,PublishAt")]Demo demo) {
+            if (id == null) {
+                return BadRequest();
+            }
+            demo.Id = id.Value;
+
+            if (ModelState.IsValid) {
+                await _service.UpdateDemoAsync(demo);
+                return RedirectToAction("Details", new { id = demo.Id });
+            }
+
+            return View(demo);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int? id) {
+            if (id == null) {
+                return BadRequest();
+            }
+
+            Demo demo = await _service.GetDemoByIdAsync(id.Value);
+            if (demo == null) {
+                return NotFound();
+            }
+            await _service.DeleteDemoAsync(demo.Id);
+            return RedirectToAction("Index");
         }
     }
 }
