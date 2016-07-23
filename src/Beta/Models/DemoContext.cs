@@ -1,14 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Beta.Models
-{
-    public class DemoContext : DbContext
-    {
-        public DemoContext(DbContextOptions options): base(options) { }
+namespace Beta.Models {
+    public class DemoContext : IdentityDbContext<ApplicationUser> {
+        public DemoContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Demo> Demos { get; set; }
 

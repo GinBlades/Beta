@@ -22,15 +22,21 @@
       "version": "1.0.0-*",
       "imports": "portable-net45+win8+dnxcore50"
     },
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+      "version": "1.0.0-*",
+      "type": "build"
+    },
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-*",
       "type": "build"
     },
+    "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-*",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-*",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-*",
     "Microsoft.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.Extensions.Logging": "1.0.0-*",

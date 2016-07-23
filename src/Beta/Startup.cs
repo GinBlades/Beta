@@ -10,6 +10,8 @@ using Beta.Models;
 using Microsoft.EntityFrameworkCore;
 using Beta.Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Beta
 {
@@ -19,6 +21,8 @@ namespace Beta
         public Startup(IHostingEnvironment env) {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables()
                 .AddUserSecrets();
 
             Configuration = builder.Build();
@@ -36,12 +40,28 @@ namespace Beta
                 )
             );
             services.AddScoped<IDemoService, DemoService>();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<DemoContext>()
+                .AddDefaultTokenProviders();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
+
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            if (env.IsDevelopment()) {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                app.UseBrowserLink();
+            } else {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
             app.UseStaticFiles();
+            app.UseIdentity();
 
             app.UseMvc(routes => {
                 routes.MapRoute(
