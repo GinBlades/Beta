@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Beta.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -6,6 +10,27 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    @if (SignInManager.IsSignedIn(User)) {
+        <ul>
+            <li>
+                <form asp-controller="Account" asp-action="LogOff" method="post">
+                    <button type="submit">Log Off</button>
+                </form>
+            </li>
+            <li>
+                <a href="#" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+        </ul>
+    } else {
+        <ul>
+            <li>
+                <a asp-controller="Account" asp-action="Register">Register</a>
+            </li>
+            <li>
+                <a asp-controller="Account" asp-action="Login">Log in</a>
+            </li>
+        </ul>
+    }
     <div>
         @RenderBody()
     </div>
