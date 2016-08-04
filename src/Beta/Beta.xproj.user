@@ -4,5 +4,6 @@
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_ControllerDialogWidth>600</WebStackScaffolding_ControllerDialogWidth>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
 </Project>

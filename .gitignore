@@ -3,5 +3,5 @@ obj/
 .vs/
 node_modules/
 bower_components/
-src/Beta/wwwroot/lib/
-src/Beta/wwwroot/css/
+src/Beta/wwwroot/*
+!src/Beta/wwwroot/src
