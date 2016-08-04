@@ -1,6 +1,21 @@
 {
-  "name": "asp.net",
+  "name": "beta",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Shaun Martin <webmaster@ginblades.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/GinBlades/Beta",
   "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "wwwroot/lib",
+    "test",
+    "tests"
+  ],
   "dependencies": {
     "bootstrap-sass": "^3.3.7"
   }
